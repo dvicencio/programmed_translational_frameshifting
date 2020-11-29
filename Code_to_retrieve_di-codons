@@ -1,12 +1,12 @@
 #!/usr/bin/perl -w
-open(SEQFILE, "ScORFsc.txt")||die "opening file $!";
+open(SEQFILE, "file_with_genome.txt")||die "opening file $!";
 @ORFarray = <SEQFILE>;
 close (SEQFILE);
 #this segment of code reads each line of the file, defining ORFs details, into an array
 
 
 @NEWDATA=();
-open (RESULTS, ">>1ststopseq2.txt") ||die "cannot open results.txt: $!";
+open (RESULTS, ">>file_with_results.txt") ||die "cannot open results.txt: $!";
 @NEWDATA = <RESULTS>;
 
 
