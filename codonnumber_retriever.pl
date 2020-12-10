@@ -1,11 +1,11 @@
 #!/usr/bin/perl -w
-open(SEQFILE, "ScORFs.txt")||die "opening file $!";
+open(SEQFILE, "Queryfile.txt")||die "opening file $!";
 @ORFarray = <SEQFILE>;
 close (SEQFILE);
 #this segment of code reads each line of the file, defining ORFs details, into an array
 
 @NEWDATA=();
-open (RESULTS, ">>codons1.txt") ||die "cannot open results.txt: $!";
+open (RESULTS, ">>Resultsfile.txt") ||die "cannot open results.txt: $!";
 @NEWDATA = <RESULTS>;
 
 
