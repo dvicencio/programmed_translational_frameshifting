@@ -1,11 +1,11 @@
 #!/usr/bin/perl -w
-open(SEQFILE, "genome_file.txt")||die "opening file $!";
+open(SEQFILE, "ScORFs.txt")||die "opening file $!";
 @ORFarray = <SEQFILE>;
 close (SEQFILE);
 #this segment of code reads each line of the file, defining ORFs details, into an array
 
 @NEWDATA=();
-open (RESULTS, ">>results_file.txt") ||die "cannot open results.txt: $!";
+open (RESULTS, ">>codons1.txt") ||die "cannot open results.txt: $!";
 @NEWDATA = <RESULTS>;
 
 
@@ -49,7 +49,7 @@ for (my $ORFcod = 1; $ORFcod <= length $ORFseq; $ORFcod += ($len)) {
     
     my $position = ($ORFcod + (length $sixnt) - 1);
     
-    push (@NEWDATA, "$codon\n");
+    push (@NEWDATA, "$codon");
    
    
 
@@ -57,10 +57,12 @@ for (my $ORFcod = 1; $ORFcod <= length $ORFseq; $ORFcod += ($len)) {
    }
 
    
-print   $NEWDATA, "\n";
+
 
 }
 
 
-
+print RESULTS @NEWDATA;
+print (scalar(@NEWDATA)-scalar(@ORFarray));
+close(RESULTS);
 
