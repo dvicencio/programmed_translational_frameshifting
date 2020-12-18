@@ -47,7 +47,8 @@ my $len = 3;
     $gene = $ORFseq; # Specifies that the gene is equivalent to the ORF
 
 for (my $ORFcod = 1; $ORFcod <= length $ORFseq; $ORFcod += ($len)) {
-  
+# this line defines the length of the array beggining from "ATG" to the end of the ORF in 3 nucleotide steps
+
    $fsitectt1 = "CTTACG";
    $fsitectt2 = "CTTTCG";
    $fsitectt3 = "CTTCGG";
@@ -105,15 +106,17 @@ for (my $ORFcod = 1; $ORFcod <= length $ORFseq; $ORFcod += ($len)) {
    $fsitecug6 = "CTGCAG";
    $fsitecug7 = "CTGAGT";
    
-   
-
     my $codon = substr ($ORFseq, $ORFcod - 1, $len);
+    # extracts the codons from the ORF in order until the end
     
      $sixnt = substr ($ORFseq, $ORFcod - 1, $len +3);
-    
-     $position = ($ORFcod + (length $sixnt) - 1);
-     %pos = ($sixnt => $position);
+     # extracts the codons plus the following 3 nucleotides (di-codon) for each codon from the beginning of the ORF to the end
      
+     $position = ($ORFcod + (length $sixnt) - 1);
+     # extracts the range position for each di-codon in the ORF
+     
+     %pos = ($sixnt => $position);
+     # generates key-value pairs for each di-codon => position to retrieve them when needed
       
  if ($sixnt eq $fsitectt1) {
   
