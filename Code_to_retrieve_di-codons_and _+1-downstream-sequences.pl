@@ -119,33 +119,42 @@ for (my $ORFcod = 1; $ORFcod <= length $ORFseq; $ORFcod += ($len)) {
      # generates key-value pairs for each di-codon => position to retrieve them when needed
       
  if ($sixnt eq $fsitectt1) {
+  # As Loop 2 reads through each codon + codon in the sequence if a di-codons is equal to $fsitectt1 (which is CTTACG in this case) the following code is applied: 
   
    $newstart = index ($gene, "???", 0);
+   # finds out the beginning of the ORF to map out the positions of each di-codon
     
     $newseq = substr ($gene, $newstart+($pos{$sixnt})-1);
+    # finds the di-codon and its exact position in the ORF using the key-value previously defined in Loop 2 and retrieves the +1 frame downstream sequence by skipping one nucleotide. For instance, when the program finds the di-codon CTTACG, it will retrieve the new sequence strating from CGX.
   
   push (@NEWDATA, "$scername\t");
         push (@NEWDATA, "$genelen\t");
         push (@NEWDATA, "($ORFcod-$position)\t");
         push (@NEWDATA, "$sixnt\t");    
         push (@NEWDATA, "$newseq\t");
+        # the 5 previous lines retrieve all the information related to the di-codon of interest which includes: gene name, gene length, di-codon position within ORF, and the +1-frame sequence downstream
+        
   $newseqlen = length($newseq);
- 
+  # defines the new frame sequence length for future reference
  
  for ($stop =0; $stop <= $newseqlen; $stop = $stop += ($len)){
-  
+ # this line, once again, defines the length of the array; however, it starts reading from the +1 frame of the sequence downstream the di-codon starting from the fourth nucleotide from left to right. 
+   
     $stopsite1 = "TAA";
     $stopsite2 = "TAG";
     $stopsite3 = "TGA";
+    # the 3 previous lines define the stop codons as a string
     
      $newcodon = substr($newseq, $stop, $len);
+     # extracts the codons from the +1 frame sequences in order
     
      $newposition = ($stop + (length $newcodon));
+     #defines the position of each codon in the +1 frame sequence
      
     %newpos = ($newcodon => $newposition);
+    # generates key-value pairs for each codon => +1 frame position to retrieve them when needed
  
- 
-    if ($newcodon eq $stopsite1 ){   
+    if ($newcodon eq $stopsite1 ){
     
      
      $stopsite = index ($newcodon, $stopsite1);
