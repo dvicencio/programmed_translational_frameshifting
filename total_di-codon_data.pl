@@ -67,5 +67,5 @@ for (my $ORFcod = 1; $ORFcod <= length $ORFseq; $ORFcod += ($len)) {
 
 
 print RESULTS @NEWDATA;
-print (scalar(@NEWDATA)-scalar(2*@ORFarray));
+print (scalar(@NEWDATA)-scalar(2*@ORFarray)+2);
 close(RESULTS);
