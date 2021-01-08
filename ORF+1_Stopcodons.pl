@@ -6,7 +6,7 @@ close (SEQFILE);
 
 
 @NEWDATA=();
-open (RESULTS, ">>+1ORFstop1.txt") ||die "cannot open results.txt: $!";
+open (RESULTS, ">>practice1.txt") ||die "cannot open results.txt: $!";
 @NEWDATA = <RESULTS>;
 
 
@@ -72,6 +72,6 @@ for (my $ORFcod = 1; $ORFcod <= length $ORFseq; $ORFcod += ($len)) {
      
 
 print RESULTS @NEWDATA;
-print scalar(@NEWDATA);
+print scalar(@NEWDATA)-1;
 close(RESULTS);
 
